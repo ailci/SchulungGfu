@@ -21,8 +21,17 @@ public class BrowserAllowed(RequestDelegate next, IEnumerable<Browser> browserAl
     {
         var clientBrowserType = IdentifyBrowser(httpContext);
 
-
-        await next(httpContext);
+        if (browserAllowedList.Any(browser => browser == clientBrowserType)) //Ok
+        {
+            await next(httpContext);
+        }
+        else
+        {
+            httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+            httpContext.Response.ContentType = "text/html";
+            await httpContext.Response.WriteAsync(
+                $"Der Browser ist nicht erlaubt. Nur {string.Join(',', browserAllowedList)}");
+        }
     }
 
     private Browser IdentifyBrowser(HttpContext httpContext)
