@@ -21,6 +21,8 @@ public class BrowserAllowed(RequestDelegate next, IEnumerable<Browser> browserAl
     {
         var clientBrowserType = IdentifyBrowser(httpContext);
 
+        //httpContext.Items["x-browsertype"] = clientBrowserType;
+
         if (browserAllowedList.Any(browser => browser == clientBrowserType)) //Ok
         {
             await next(httpContext);
