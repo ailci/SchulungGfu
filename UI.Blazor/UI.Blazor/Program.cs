@@ -1,3 +1,4 @@
+using Application.Contracts.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using UI.Blazor.Components.Pages;
 using UI.Blazor.Configuration;
 using UI.Blazor.Data;
 using UI.Blazor.Middleware;
+using UI.Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,7 @@ builder.AddBlazorConfig()
 builder.Services.AddPersistenceServices(builder.Configuration);
 
 //DI
+builder.Services.AddScoped<IQotdService, QotdService>();
 
 var app = builder.Build();
 
