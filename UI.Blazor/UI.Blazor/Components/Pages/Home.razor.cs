@@ -10,7 +10,7 @@ public partial class Home
 
     protected override void OnInitialized()
     {
-        var quotes = QotdContext.Quotes.ToList();
+        var quotes = QotdContext.Quotes.ToList()[0];
 
 
         QotdViewModel = new QuoteOfTheDayViewModel
