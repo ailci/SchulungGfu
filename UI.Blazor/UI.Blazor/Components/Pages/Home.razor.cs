@@ -1,4 +1,5 @@
 using Application.Contracts.Services;
+using Application.Utilities;
 using Application.ViewModels.Qotd;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ namespace UI.Blazor.Components.Pages;
 
 public partial class Home
 {
+    [Inject] private ILogger<Home> Logger { get; set; } = null!;
     [Inject] public IServiceManager ServiceManager { get; set; } = null!;
 
     //https://learn.microsoft.com/en-us/aspnet/core/blazor/components/prerender?view=aspnetcore-9.0
@@ -28,6 +30,8 @@ public partial class Home
         {
             QotdViewModel = restoredData;
         }
+
+        //Logger.LogInformation($"QotdViewmodel => {QotdViewModel?.LogAsJson()}");
     }
 
     private Task PersistData()
