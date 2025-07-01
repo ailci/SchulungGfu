@@ -10,10 +10,39 @@ namespace UI.Blazor.Components.Pages;
 public partial class Home
 {
     [Inject] public IServiceManager ServiceManager { get; set; } = null!;
+
+    //https://learn.microsoft.com/en-us/aspnet/core/blazor/components/prerender?view=aspnetcore-9.0
+    [Inject] public PersistentComponentState ApplicationState { get; set; } = null!;
+    private PersistingComponentStateSubscription _persistingComponentStateSubscription;
     public QuoteOfTheDayViewModel? QotdViewModel { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        QotdViewModel = await ServiceManager.QotdService.GetQuoteOfTheDayAsync();
+        _persistingComponentStateSubscription = ApplicationState.RegisterOnPersisting(PersistData);
+
+        if (!ApplicationState.TryTakeFromJson<QuoteOfTheDayViewModel>(nameof(QotdViewModel), out var restoredData))
+        {
+            QotdViewModel = await ServiceManager.QotdService.GetQuoteOfTheDayAsync();
+        }
+        else
+        {
+            QotdViewModel = restoredData;
+        }
     }
+
+    private Task PersistData()
+    {
+        ApplicationState.PersistAsJson(nameof(QotdViewModel),QotdViewModel);
+        return Task.CompletedTask;
+    }
+
+    // 2.Lösung via OnAfterRender
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    if (firstRender)
+    //    {
+    //        QotdViewModel = await ServiceManager.QotdService.GetQuoteOfTheDayAsync();
+    //        StateHasChanged();
+    //    }
+    //}
 }
