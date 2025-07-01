@@ -15,7 +15,7 @@ public static class PersistenceServiceRegistration
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-        services.AddDbContext<QotdContext>(options =>
+        services.AddDbContextFactory<QotdContext>(options =>
         {
             options.UseSqlServer(connectionString);
         });
