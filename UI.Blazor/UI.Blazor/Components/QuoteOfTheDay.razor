@@ -12,7 +12,8 @@ else
                     <!-- Bild -->
                     @if (!string.IsNullOrEmpty(QotdVm.AuthorPhotoMimeType) && QotdVm.AuthorPhoto is not null)
                     {
-                        @* Bild *@
+                        <!-- src="data:MIMETYPE;base64,NUTZDATEN" -->
+                        <img width="150" src="data:@QotdVm.AuthorPhotoMimeType;base64,@Convert.ToBase64String(QotdVm.AuthorPhoto)" />
                     }
                     else
                     {
