@@ -24,4 +24,11 @@ public partial class Overview
         AuthorsVm = (await ServiceManager.AuthorService.GetAuthorsAsync()).OrderBy(c => c.Name);
         //Logger.LogInformation(AuthorsVm?.LogAsJson());
     }
+
+    private async Task DeleteAuthor(Guid authorId)
+    {
+        Logger.LogInformation($"Author mit Id: {authorId} zum Löschen ausgewählt...");
+
+        //TODO: Autor löschen
+    }
 }
