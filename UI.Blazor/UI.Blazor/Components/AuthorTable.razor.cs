@@ -8,8 +8,10 @@ public partial class AuthorTable
     [Parameter, EditorRequired] 
     public IEnumerable<AuthorViewModel>? AuthorViewModels { get; set; }
 
-    private Task ShowConfirmationDialog(AuthorViewModel authorVm)
+    [Parameter] public EventCallback<Guid> OnAuthorDelete { get; set; }
+
+    private async Task ShowConfirmationDialog(AuthorViewModel authorVm)
     {
-        return Task.CompletedTask;
+        await OnAuthorDelete.InvokeAsync(authorVm.Id); //auslösen des Events
     }
 }
