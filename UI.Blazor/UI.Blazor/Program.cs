@@ -26,6 +26,7 @@ builder.Services
 
 //DI
 builder.Services.AddScoped<IQotdService, QotdService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 
 var app = builder.Build();
