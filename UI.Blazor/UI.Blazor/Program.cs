@@ -56,6 +56,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
     app.UseMigrationsEndPoint();
+
+    //Db
+    await app.ApplyMigrationAsync();
 }
 else
 {
