@@ -1,3 +1,4 @@
+using Application;
 using Application.Contracts.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +20,9 @@ builder.AddBlazorConfig()
     .AddAuthentificationConfig();
 
 //QotdContext
-builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services
+    .AddPersistenceServices(builder.Configuration)
+    .AddApplicationServices();
 
 //DI
 builder.Services.AddScoped<IQotdService, QotdService>();

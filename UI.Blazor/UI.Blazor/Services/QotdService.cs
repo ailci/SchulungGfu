@@ -1,11 +1,12 @@
 ﻿using Application.Contracts.Services;
 using Application.ViewModels.Qotd;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace UI.Blazor.Services;
 
-public class QotdService(ILogger<QotdService> logger, IDbContextFactory<QotdContext> contextFactory) : IQotdService
+public class QotdService(ILogger<QotdService> logger, IDbContextFactory<QotdContext> contextFactory, IMapper mapper) : IQotdService
 {
     public async Task<QuoteOfTheDayViewModel> GetQuoteOfTheDayAsync()
     {
@@ -18,16 +19,19 @@ public class QotdService(ILogger<QotdService> logger, IDbContextFactory<QotdCont
 
         var randomQuote = quotes[random.Next(quotes.Count)];
 
-        return new QuoteOfTheDayViewModel
-        {
-            Id = randomQuote.Id,
-            QuoteText = randomQuote.QuoteText,
-            AuthorBirthDate = randomQuote.Author?.BirthDate,
-            AuthorName = randomQuote.Author?.Name ?? string.Empty,
-            AuthorDescription = randomQuote.Author?.Description ?? string.Empty,
-            AuthorPhoto = randomQuote.Author?.Photo,
-            AuthorPhotoMimeType = randomQuote.Author?.PhotoMimeType
-        };
+        //Manuelles Mapping
+        //return new QuoteOfTheDayViewModel
+        //{
+        //    Id = randomQuote.Id,
+        //    QuoteText = randomQuote.QuoteText,
+        //    AuthorBirthDate = randomQuote.Author?.BirthDate,
+        //    AuthorName = randomQuote.Author?.Name ?? string.Empty,
+        //    AuthorDescription = randomQuote.Author?.Description ?? string.Empty,
+        //    AuthorPhoto = randomQuote.Author?.Photo,
+        //    AuthorPhotoMimeType = randomQuote.Author?.PhotoMimeType
+        //};
 
+        //Automapper
+        return mapper.Map<QuoteOfTheDayViewModel>(randomQuote);
     }
 }
