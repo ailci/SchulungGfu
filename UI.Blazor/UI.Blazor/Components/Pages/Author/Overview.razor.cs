@@ -11,6 +11,7 @@ public partial class Overview
     [Inject] public ILogger<Overview> Logger { get; set; } = null!;
     [Inject] public IServiceManager ServiceManager { get; set; } = null!;
     public IEnumerable<AuthorViewModel>? AuthorsVm { get; set; }
+    private string? _errorMessage;
     
     #endregion
 
@@ -28,7 +29,17 @@ public partial class Overview
     private async Task DeleteAuthor(Guid authorId)
     {
         Logger.LogInformation($"Author mit Id: {authorId} zum Löschen ausgewählt...");
+        _errorMessage = string.Empty;
 
-        //TODO: Autor löschen
+        var isDeleted = await ServiceManager.AuthorService.DeleteAuthorAsync(authorId);
+
+        if (isDeleted)
+        {
+            await GetAuthors();
+        }
+        else
+        {
+            _errorMessage = "Autor konnte nicht gelöscht werden";
+        }
     }
 }

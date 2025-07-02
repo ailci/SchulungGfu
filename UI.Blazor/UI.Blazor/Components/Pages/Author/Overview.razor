@@ -39,3 +39,8 @@ else
         </tbody>
     </table>
 }
+
+@if (!string.IsNullOrWhiteSpace(_errorMessage))
+{
+    <div class="alert alert-danger">@_errorMessage</div>
+}
