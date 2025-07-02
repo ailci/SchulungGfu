@@ -8,6 +8,7 @@ using UI.Blazor.Client.Pages;
 using UI.Blazor.Components;
 using UI.Blazor.Components.Account;
 using UI.Blazor.Components.Pages;
+using UI.Blazor.ComponentsLibrary;
 using UI.Blazor.Configuration;
 using UI.Blazor.Data;
 using UI.Blazor.Middleware;
@@ -22,10 +23,11 @@ builder.AddBlazorConfig()
 //QotdContext
 builder.Services
     .AddPersistenceServices(builder.Configuration)
-    .AddApplicationServices();
+    .AddApplicationServices()
+    .AddComponentLibrary();
 
 //DI
-builder.Services.AddScoped<IQotdService, QotdService>();
+//builder.Services.AddScoped<IQotdService, QotdService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 
