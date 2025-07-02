@@ -1,5 +1,6 @@
 using Application.ViewModels.Author;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Build.Framework;
 
 namespace UI.Blazor.Components;
 public partial class AuthorTable
@@ -9,6 +10,6 @@ public partial class AuthorTable
 
     private Task ShowConfirmationDialog(AuthorViewModel authorVm)
     {
-        
+        return Task.CompletedTask;
     }
 }
