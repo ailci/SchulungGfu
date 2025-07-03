@@ -1,8 +1,25 @@
 ﻿@page "/author/details/{Id:guid}"
+@using Application.Contracts.Services
 
-<h3>Details für <!-- AutorName --></h3>
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+<h3>Details für @AuthorVm?.Name </h3>
 
 <!-- Stammdaten des Authors -->
+<div class="row">
+    <div class="card mb-2" style="width: 18rem;">
+        <DataImageUri Image="@AuthorVm?.Photo"
+                      ImageMimeType="@AuthorVm?.PhotoMimeType"
+                      alt="@AuthorVm?.Name"
+                      class="card-img-top">
+        </DataImageUri>
+        <div class="card-body">
+            <h5 class="card-title">@AuthorVm?.Name</h5>
+            <p class="card-subtitle text-muted">@AuthorVm?.Description</p>
+            <p class="card-text">@AuthorVm?.BirthDate?.ToShortDateString()</p>
+        </div>
+    </div>
+</div>
 
 <!-- Liste von den Sprüchen -->
 
@@ -11,5 +28,12 @@
     [Parameter] 
     public Guid Id { get; set; }
 
-    //TODO: Html, IAuthorService erweitern
+    [Inject] public IServiceManager ServiceManager { get; set; } = null!;
+
+    public AuthorViewModel? AuthorVm { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthorVm = await ServiceManager.AuthorService.GetAuthorAsync(Id, includeQuotes: true);
+    }
 }

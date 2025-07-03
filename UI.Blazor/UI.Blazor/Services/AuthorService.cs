@@ -51,4 +51,17 @@ public class AuthorService(ILogger<AuthorService> logger, IDbContextFactory<Qotd
         
         return await context.SaveChangesAsync() > 0;
     }
+
+    public async Task<AuthorViewModel> GetAuthorAsync(Guid authorId, bool includeQuotes = false)
+    {
+        logger.LogInformation($"{nameof(GetAuthorAsync)} mit AuthorId: {authorId} aufgerufen...");
+
+        await using var context = await contextFactory.CreateDbContextAsync();
+
+        var author = !includeQuotes
+            ? await context.Authors.FindAsync(authorId)
+            : await context.Authors.Include(c => c.Quotes).SingleOrDefaultAsync(c => c.Id.Equals(authorId));
+
+        return mapper.Map<AuthorViewModel>(author);
+    }
 }
