@@ -64,4 +64,26 @@ public class AuthorService(ILogger<AuthorService> logger, IDbContextFactory<Qotd
 
         return mapper.Map<AuthorViewModel>(author);
     }
+
+    public async Task<AuthorViewModel> AddAuthorAsync(AuthorForCreateViewModel authorForCreateViewModel)
+    {
+        logger.LogInformation($"{nameof(AddAuthorAsync)} mit AuthorForCreateVm: {authorForCreateViewModel.LogAsJson()} aufgerufen...");
+
+        await using var context = await contextFactory.CreateDbContextAsync();
+
+        var authorEntity = mapper.Map<Author>(authorForCreateViewModel);
+
+        //Falls Bild ausgewählt
+        if (authorForCreateViewModel.Photo is not null)
+        {
+            (authorEntity.Photo, authorEntity.PhotoMimeType) = await authorForCreateViewModel.Photo.GetFile();
+        }
+
+        logger.LogInformation($"AuthorEntity: {authorEntity.LogAsJson()} umgewandelt...");
+
+        await context.Authors.AddAsync(authorEntity);
+        await context.SaveChangesAsync();
+
+        return mapper.Map<AuthorViewModel>(authorEntity);
+    }
 }
