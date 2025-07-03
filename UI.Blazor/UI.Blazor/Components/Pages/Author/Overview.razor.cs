@@ -10,6 +10,7 @@ public partial class Overview
     
     [Inject] public ILogger<Overview> Logger { get; set; } = null!;
     [Inject] public IServiceManager ServiceManager { get; set; } = null!;
+    [Inject] public NavigationManager NavManager { get; set; } = null!;
     public IEnumerable<AuthorViewModel>? AuthorsVm { get; set; }
     private string? _errorMessage;
     
@@ -41,5 +42,9 @@ public partial class Overview
         {
             _errorMessage = "Autor konnte nicht gelöscht werden";
         }
+    }
+    private void NavigateToAuthorNew()
+    {
+        NavManager.NavigateTo("/authors/new");
     }
 }
