@@ -60,7 +60,7 @@ if (app.Environment.IsDevelopment())
     app.UseMigrationsEndPoint();
 
     //Db
-    await app.ApplyMigrationAsync();
+    //await app.ApplyMigrationAsync();
 }
 else
 {
