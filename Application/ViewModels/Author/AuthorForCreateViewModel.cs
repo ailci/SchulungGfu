@@ -26,5 +26,7 @@ public class AuthorForCreateViewModel
     [NoFutureDate(ErrorMessage = "Das Geburtsdatum liegt in der Zukunft")]
     [DataType(DataType.Date)]
     public DateOnly? BirthDate { get; set; }
+
+    [AllowedFileFormats(["jpg","jpeg","png"])]
     public IBrowserFile? Photo { get; set; }
 }
