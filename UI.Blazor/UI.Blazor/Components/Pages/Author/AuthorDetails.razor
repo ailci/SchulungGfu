@@ -1,0 +1,15 @@
+﻿@page "/author/details/{Id:guid}"
+
+<h3>Details für <!-- AutorName --></h3>
+
+<!-- Stammdaten des Authors -->
+
+<!-- Liste von den Sprüchen -->
+
+@code {
+
+    [Parameter] 
+    public Guid Id { get; set; }
+
+    //TODO: Html, IAuthorService erweitern
+}

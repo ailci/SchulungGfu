@@ -27,6 +27,7 @@ else
                     <td>@author.Description</td>
                     <td>@(author.BirthDate is not null ? author.BirthDate.Value.ToShortDateString() : "k.A.")</td>
                     <td>
+                        <a href="@($"author/details/{author.Id}")" class="btn btn-info">Details</a>
                         <button class="btn btn-danger" @onclick="() => ShowConfirmationDialog(author)">Löschen</button>
                     </td>
                 </tr>
