@@ -5,6 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="..\UI.Blazor.Client\UI.Blazor.Client.csproj" />
     <PackageVersion Include="AutoMapper" Version="14.0.0" />
+    <PackageVersion Include="Markdig" Version="0.41.3" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.6" />
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.6" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.6" />
