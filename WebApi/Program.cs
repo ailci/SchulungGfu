@@ -17,7 +17,17 @@ builder.Services
     .AddPersistenceServices(builder.Configuration)
     .AddApplicationServices();
 
+//DI
 builder.Services.AddScoped<IQotdService, QotdDbService>();
+
+//Cors
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(opt =>
+    {
+        opt.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -29,6 +39,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

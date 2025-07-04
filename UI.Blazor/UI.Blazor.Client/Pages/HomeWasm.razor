@@ -1,5 +1,11 @@
-﻿<h3>HomeWasm</h3>
+﻿@page "/homewasm"
+@using Application.Utilities
 
-@code {
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
-}
+<QuoteOfTheDay Title="Spruch Des Tages" QotdVm="QotdViewModel">
+    <LogOfQotd>
+        <div class="alert alert-dark">@QotdViewModel?.LogAsJson()</div>
+        <SystemInfo />
+    </LogOfQotd>
+</QuoteOfTheDay>
