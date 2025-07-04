@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Blazor.ComponentsLibrary", "UI.Blazor.ComponentsLibrary\UI.Blazor.ComponentsLibrary.csproj", "{53FE7DEE-EC3E-4AFE-A0A7-825B68152536}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{17E3CCAC-B269-49DD-94A2-94A48DA47382}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{53FE7DEE-EC3E-4AFE-A0A7-825B68152536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53FE7DEE-EC3E-4AFE-A0A7-825B68152536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53FE7DEE-EC3E-4AFE-A0A7-825B68152536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17E3CCAC-B269-49DD-94A2-94A48DA47382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17E3CCAC-B269-49DD-94A2-94A48DA47382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17E3CCAC-B269-49DD-94A2-94A48DA47382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17E3CCAC-B269-49DD-94A2-94A48DA47382}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{F79487C7-A6C9-4BCF-87BF-0C57461C52B6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{F0AA08F7-7DC7-46A8-8170-D488B039B871} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{53FE7DEE-EC3E-4AFE-A0A7-825B68152536} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{17E3CCAC-B269-49DD-94A2-94A48DA47382} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1483CC8C-200E-407F-8A1B-53B75881B188}
