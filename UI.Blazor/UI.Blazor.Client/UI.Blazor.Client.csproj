@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\UI.Blazor.ComponentsLibrary\UI.Blazor.ComponentsLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
