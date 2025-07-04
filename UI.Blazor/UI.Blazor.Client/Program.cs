@@ -12,7 +12,14 @@ builder.Services.AddAuthenticationStateDeserialization();
 builder.Services.AddScoped<IQotdService, QotdApiService>();
 
 //Named Client
-builder.Services.AddHttpClient("qotdapiservice", options =>
+//builder.Services.AddHttpClient("qotdapiservice", options =>
+//{
+//    options.BaseAddress = new Uri("https://localhost:7188");
+//    options.DefaultRequestHeaders.Add("Accept","application/json");
+//});
+
+
+builder.Services.AddHttpClient<IQotdService, QotdApiService>(options =>
 {
     options.BaseAddress = new Uri("https://localhost:7188");
     options.DefaultRequestHeaders.Add("Accept","application/json");
