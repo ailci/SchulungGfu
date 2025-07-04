@@ -24,5 +24,6 @@ public partial class OnlineStatus
     {
         _isOnline = isOnline;
         _bgColor = _isOnline ? "bg-success" : "bg-danger";
+        StateHasChanged();
     }
 }
