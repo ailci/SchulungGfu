@@ -1,5 +1,7 @@
 using Application.Contracts.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Options;
+using UI.Blazor.Client;
 using UI.Blazor.Client.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -10,6 +12,9 @@ builder.Services.AddAuthenticationStateDeserialization();
 
 //DI
 builder.Services.AddScoped<IQotdService, QotdApiService>();
+builder.Services.Configure<QotdAppSettings>(builder.Configuration.GetSection(nameof(QotdAppSettings)));
+
+var qotdAppSettings = builder.Configuration.GetSection(nameof(QotdAppSettings)).Get<QotdAppSettings>();
 
 //Named Client
 //builder.Services.AddHttpClient("qotdapiservice", options =>
@@ -18,10 +23,11 @@ builder.Services.AddScoped<IQotdService, QotdApiService>();
 //    options.DefaultRequestHeaders.Add("Accept","application/json");
 //});
 
-
-builder.Services.AddHttpClient<IQotdService, QotdApiService>(options =>
+//Typed Client
+builder.Services.AddHttpClient<IQotdService, QotdApiService>( (sp, options) =>
 {
-    options.BaseAddress = new Uri("https://localhost:7188");
+    //var apiConfiguration = sp.GetRequiredService<IOptions<QotdAppSettings>>();
+    options.BaseAddress = new Uri(qotdAppSettings!.QotdServiceApiUri);
     options.DefaultRequestHeaders.Add("Accept","application/json");
 });
 
