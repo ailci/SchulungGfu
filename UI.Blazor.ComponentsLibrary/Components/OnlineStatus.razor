@@ -1,0 +1,4 @@
+﻿@if(RendererInfo is { IsInteractive: true, Name: "WebAssembly" })
+{
+    <div class="text-center fw-bold text-white @_bgColor">@(_isOnline ? "Online" : "Offline")</div>
+}

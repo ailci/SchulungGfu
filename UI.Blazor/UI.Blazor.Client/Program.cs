@@ -12,17 +12,17 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
 
-Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext()
-    .Enrich.WithProperty("InstanceId", Guid.NewGuid().ToString("n"))
-    .WriteTo.BrowserHttp($"{builder.HostEnvironment.BaseAddress}ingest", controlLevelSwitch: new LoggingLevelSwitch(LogEventLevel.Information))
-    .WriteTo.BrowserConsole(levelSwitch: new LoggingLevelSwitch(LogEventLevel.Information))
-    .CreateLogger();
+//Log.Logger = new LoggerConfiguration()
+//    .ReadFrom.Configuration(builder.Configuration)
+//    .Enrich.FromLogContext()
+//    .Enrich.WithProperty("InstanceId", Guid.NewGuid().ToString("n"))
+//    .WriteTo.BrowserHttp($"{builder.HostEnvironment.BaseAddress}ingest", controlLevelSwitch: new LoggingLevelSwitch(LogEventLevel.Information))
+//    .WriteTo.BrowserConsole(levelSwitch: new LoggingLevelSwitch(LogEventLevel.Information))
+//    .CreateLogger();
 
-builder.Logging
-    .ClearProviders()
-    .AddProvider(new SerilogLoggerProvider());
+//builder.Logging
+//    .ClearProviders()
+//    .AddProvider(new SerilogLoggerProvider());
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddCascadingAuthenticationState();
