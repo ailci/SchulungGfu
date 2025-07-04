@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Logging\Logging.csproj" />
     <ProjectReference Include="..\..\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\UI.Blazor.ComponentsLibrary\UI.Blazor.ComponentsLibrary.csproj" />
     <ProjectReference Include="..\UI.Blazor.Client\UI.Blazor.Client.csproj" />

@@ -14,6 +14,8 @@ public partial class HomeWasm
 
     protected override async Task OnInitializedAsync()
     {
+        Logger.LogWarning("HALLO WASM HOME");
+
         //1. Version
         //var client = HttpClientFactory.CreateClient("qotdapiservice");
         //var response = await client.GetAsync("api/qotd");

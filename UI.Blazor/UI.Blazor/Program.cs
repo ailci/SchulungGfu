@@ -1,5 +1,6 @@
 using Application;
 using Application.Contracts.Services;
+using Logging;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,9 @@ using UI.Blazor.Middleware;
 using UI.Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Serilog
+builder.AddLoggingConfig();
 
 // Add services to the container.
 builder.AddBlazorConfig()
